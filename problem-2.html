@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Odd Number Series Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .box {
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        input,
+        button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        #output {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Odd Number Series</h2>
+        <input type="number" id="inputA" placeholder="Enter a number (a)">
+        <button onclick="showSeries()">Generate Series</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function generateOddSeries(a) {
+            let result = [];
+            for (let i = 0; i < a; i++) {
+                result.push(2 * i + 1);
+            }
+            return result.join(", ");
+        }
+
+    function showSeries() {
+    const a = parseInt(document.getElementById('inputA').value);
+    if (isNaN(a) || a < 1) {
+        document.getElementById('output').innerText = 'Please enter a valid positive integer.';
+        return;
+    }
+    const series = generateOddSeries(a);
+    document.getElementById('output').innerText = `Output: ${series}`;
+}
+    </script>
+
+</body>
+
+</html>

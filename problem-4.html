@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multiples Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+
+        #result {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Count Multiples of 1–9</h2>
+    <p>Enter numbers separated by commas (e.g. 1,2,8,9,12,46,76,82,15,20,30)</p>
+    <input type="text" id="numberInput" placeholder="Enter numbers here...">
+    <button onclick="countMultiples()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script>
+        function countMultiples() {
+            const input = document.getElementById("numberInput").value;
+            const nums = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
+            const result = {};
+            for (let i = 1; i <= 9; i++) {
+                result[i] = 0;
+            }
+
+            nums.forEach(num => {
+                for (let i = 1; i <= 9; i++) {
+                    if (num % i === 0) {
+                        result[i]++;
+                    }
+                }
+            });
+            
+            const formatted = '{' + Object.entries(result)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', ') + '}';
+
+            document.getElementById("result").innerText = formatted;
+        }
+
+    </script>
+
+</body>
+
+</html>
